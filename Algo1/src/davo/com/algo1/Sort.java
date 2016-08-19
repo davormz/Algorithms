@@ -2,6 +2,8 @@ package davo.com.algo1;
 
 public class Sort {
 	
+	private static long inversionsCounter;
+	
 	public static int[] mergeSort(int data[], int lowIndex, int highIndex){
 		int middleIndex = (highIndex + lowIndex)/2;
 		
@@ -25,13 +27,24 @@ public class Sort {
 			if(firstSortedArray[i] < secondSortedArray[j]){
 				mergedArray[k] = firstSortedArray[i];
 				i++;
+				inversionsCounter++;
 			}else{
 				mergedArray[k] = secondSortedArray[j];
 				j++;
+				inversionsCounter++;
 			}
 		}
 		
 		return	mergedArray;
 	}
+
+	public static long getInversionsCounter() {
+		return inversionsCounter;
+	}
+	
+	public static void restartInversionsCounter(){
+		inversionsCounter = 0;
+	}
+
 	
 }
