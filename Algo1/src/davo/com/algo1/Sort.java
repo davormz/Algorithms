@@ -4,22 +4,22 @@ public class Sort {
 	
 	private static long inversionsCounter;
 	
-	public static int[] mergeSort(int data[], int lowIndex, int highIndex){
+	public static Integer[] mergeSort(Integer data[], int lowIndex, int highIndex){
 		int middleIndex = (highIndex + lowIndex)/2;
 		
 		if(middleIndex == highIndex){
-			int[] auxData = new int[1];
+			Integer[] auxData = new Integer[1];
 			auxData[0] = data[middleIndex];
 			return auxData;
 		}else{
-			int[] firstHalfSorted = mergeSort(data, lowIndex, middleIndex);
-			int[] secondHalfSorted = mergeSort(data, middleIndex + 1, highIndex);
+			Integer[] firstHalfSorted = mergeSort(data, lowIndex, middleIndex);
+			Integer[] secondHalfSorted = mergeSort(data, middleIndex + 1, highIndex);
 			return merge(firstHalfSorted, secondHalfSorted);
 		}
 	}
 	
-	private static int[] merge(int[] firstSortedArray, int[] secondSortedArray){
-		int mergedArray[] = new int[firstSortedArray.length + secondSortedArray.length];
+	private static Integer[] merge(Integer[] firstSortedArray, Integer[] secondSortedArray){
+		Integer mergedArray[] = new Integer[firstSortedArray.length + secondSortedArray.length];
 		int i = 0;
 		int j = 0;
 		
