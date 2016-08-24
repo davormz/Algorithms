@@ -25,7 +25,7 @@ public class Sort {
 			return auxData;
 		}else{
 			Integer[] firstHalfSorted = mergeSort(data, startIndex, middleIndex);
-			Integer[] secondHalfSorted = mergeSort(data, middleIndex + 1, endIndex);
+			Integer[] secondHalfSorted = mergeSort(data, middleIndex + 1, endIndex - 1);
 			return merge(firstHalfSorted, secondHalfSorted);
 		}
 	}
@@ -34,8 +34,9 @@ public class Sort {
 		Integer mergedArray[] = new Integer[firstSortedArray.length + secondSortedArray.length];
 		int i = 0;
 		int j = 0;
+		int k = 0;
 		
-		for(int k = 0 ; k < mergedArray.length ; k++){
+		while(i < firstSortedArray.length && j < secondSortedArray.length){
 			if(firstSortedArray[i] < secondSortedArray[j]){
 				mergedArray[k] = firstSortedArray[i];
 				i++;
@@ -45,6 +46,13 @@ public class Sort {
 				j++;
 				inversionsCounter++;
 			}
+			k++;
+		}
+		if(i < firstSortedArray.length){
+			System.arraycopy(firstSortedArray, i, mergedArray, k, firstSortedArray.length - i);
+		}
+		if(j < secondSortedArray.length){
+			System.arraycopy(secondSortedArray, j, mergedArray, k, secondSortedArray.length - j);
 		}
 		
 		return	mergedArray;
