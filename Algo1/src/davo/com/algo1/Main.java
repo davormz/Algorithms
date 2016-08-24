@@ -1,10 +1,9 @@
 package davo.com.algo1;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import davo.com.algo1.util.FileHelper;
 
 public class Main {
 	
@@ -13,7 +12,7 @@ public class Main {
 		
 		try {
 			System.out.println("Reading Data ...");
-			ArrayList<Integer> numbers = readFile(fileName);
+			ArrayList<Integer> numbers = FileHelper.readNumbersFromFile(fileName);
 			Integer data[] = new Integer[10];
 			data = numbers.toArray(data);
 			
@@ -25,28 +24,6 @@ public class Main {
 		}
 		System.out.println("Sorted!");
 		System.out.println("Number of inversions: " + Sort.getInversionsCounter());
-		
-	}
-	
-	private static ArrayList<Integer> readFile(String fileName) throws NumberFormatException, IOException{
-		File inputFile = new File(fileName);
-		FileReader fileReader = null;
-		BufferedReader bufferedReader = null;
-		String line = null;
-		ArrayList<Integer> numbers = new ArrayList<Integer>();
-		
-		try {
-			fileReader = new FileReader(inputFile);
-			
-			bufferedReader = new BufferedReader(fileReader);
-
-            while((line = bufferedReader.readLine()) != null) {
-            	numbers.add(Integer.parseInt(line));
-            }
-		} finally{
-			bufferedReader.close();
-		}
-		return numbers;
 	}
 	
 }
