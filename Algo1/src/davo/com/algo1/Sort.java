@@ -1,19 +1,31 @@
 package davo.com.algo1;
 
+/**
+ * This Class implements sort algorithms: mergesort and Quicksort.
+ * @author davo.rmz
+ *
+ */
 public class Sort {
 	
 	private static long inversionsCounter;
 	
-	public static Integer[] mergeSort(Integer data[], int lowIndex, int highIndex){
-		int middleIndex = (highIndex + lowIndex)/2;
+	/**
+	 * Sort the given data at the start index to the end index, using mergesort method.
+	 * @param data
+	 * @param startIndex
+	 * @param endIndex
+	 * @return
+	 */
+	public static Integer[] mergeSort(Integer data[], int startIndex, int endIndex){
+		int middleIndex = (endIndex + startIndex)/2;
 		
-		if(middleIndex == highIndex){
+		if(middleIndex == endIndex){
 			Integer[] auxData = new Integer[1];
 			auxData[0] = data[middleIndex];
 			return auxData;
 		}else{
-			Integer[] firstHalfSorted = mergeSort(data, lowIndex, middleIndex);
-			Integer[] secondHalfSorted = mergeSort(data, middleIndex + 1, highIndex);
+			Integer[] firstHalfSorted = mergeSort(data, startIndex, middleIndex);
+			Integer[] secondHalfSorted = mergeSort(data, middleIndex + 1, endIndex);
 			return merge(firstHalfSorted, secondHalfSorted);
 		}
 	}
@@ -38,10 +50,17 @@ public class Sort {
 		return	mergedArray;
 	}
 
+	/**
+	 * Gets the inversions counter's value.
+	 * @return
+	 */
 	public static long getInversionsCounter() {
 		return inversionsCounter;
 	}
 	
+	/**
+	 * Restarts the inversions counter to 0.
+	 */
 	public static void restartInversionsCounter(){
 		inversionsCounter = 0;
 	}
