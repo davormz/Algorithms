@@ -40,7 +40,6 @@ public class Sort {
 			if(firstSortedArray[i] < secondSortedArray[j]){
 				mergedArray[k] = firstSortedArray[i];
 				i++;
-				inversionsCounter++;
 			}else{
 				mergedArray[k] = secondSortedArray[j];
 				j++;
@@ -53,6 +52,7 @@ public class Sort {
 		}
 		if(j < secondSortedArray.length){
 			System.arraycopy(secondSortedArray, j, mergedArray, k, secondSortedArray.length - j);
+			inversionsCounter += secondSortedArray.length - j;
 		}
 		
 		return	mergedArray;
