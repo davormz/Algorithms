@@ -1,2 +1,2 @@
 # Algorithms
-Project to place my tests for the Algorithms course
+Project to place my Algorithms tests.
