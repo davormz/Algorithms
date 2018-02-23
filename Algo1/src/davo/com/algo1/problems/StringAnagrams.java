@@ -1,7 +1,11 @@
 package davo.com.algo1.problems;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.Set;
 
 /**
  * Given two strings,  and , that may or may not be of the same length, 
@@ -20,17 +24,44 @@ public class StringAnagrams {
 	    }
 	    
 	    
-	    //TODO:
 	    public static int numberNeeded(String first, String second) {
 	    	char firstArray[] = first.toCharArray();
 	    	char secondArray[] = second.toCharArray();
+	    	int numberNeeded = 0;
 	    	
 	    	HashMap<Character, Integer> firstHash = createHash(firstArray);
 	    	HashMap<Character, Integer> secondHash = createHash(secondArray);
 	    	
+	    	ArrayList<Character> visited = new ArrayList<Character>();
 	    	
-		   
-	    	return 0;
+	    	Set<Character> firstKeys = firstHash.keySet();
+	    	
+	    	for(Character element : firstKeys){
+	    		if(secondHash.containsKey(element)){
+	    			Integer numberOfElementSecondHash = secondHash.get(element);
+	    			Integer numberOfElementFirstHash = firstHash.get(element);
+	    			if(numberOfElementSecondHash != numberOfElementFirstHash){
+	    				numberNeeded += Math.abs(numberOfElementSecondHash - numberOfElementFirstHash);
+	    			}
+	    		}else{
+	    			Integer numberOfElementFirstHash = firstHash.get(element);
+	    			numberNeeded += numberOfElementFirstHash;
+	    		}
+	    		visited.add(element);
+	    	}
+	    	
+	    	Collections.sort(visited);
+	    	
+	    	Set<Character> secondKeys = secondHash.keySet();
+	    	for(Character element : secondKeys){
+	    		int foundIndex = Collections.binarySearch(visited, element);
+	    		if(foundIndex < 0){
+	    			Integer numberOfElementSecondHash = secondHash.get(element);
+	    			numberNeeded += numberOfElementSecondHash;
+	    		}
+	    	}
+	    	
+	    	return numberNeeded;
 	    }
 	    
 	    public static HashMap<Character, Integer> createHash(char aray[]){
